@@ -1,0 +1,13 @@
+{
+  "name": "vb-grid-vonbyte",
+  "private": true,
+  "scripts": {
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore"
+  },
+  "dependencies": {
+    "bulma": "^0.8.2",
+    "gridsome": "^0.7.0"
+  }
+}
