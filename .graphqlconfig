@@ -1,0 +1,15 @@
+{
+  "name":       "vonByte",
+  "schemaPath": "my_endpoint_schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "vonByte Endpoint": {
+        "url":        "http://localhost:8080/___graphql",
+        "headers":    {
+
+        },
+        "introspect": true
+      }
+    }
+  }
+}
