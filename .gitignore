@@ -11,3 +11,5 @@ node_modules
 
 # Custom
 /_bak
+/dist/.well-known
+/dist/stats
