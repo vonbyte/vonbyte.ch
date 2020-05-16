@@ -1,8 +1,13 @@
-/** Import the Bulma variables */
-@import "variables";
+@import "utils/all";
 
 /** Import Bulma */
 @import "~bulma";
 
 /** Import overrides */
-@import "overrides";
+@import "helpers";
+@import "layout";
+
+// Components
+@import "components/menu";
+
+// Elements

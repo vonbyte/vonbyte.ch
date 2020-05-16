@@ -1,33 +1,51 @@
 <template>
   <Layout>
+    <div class="hero-body is-relative">
+      <div class="container has-text-centered">
+        <logo/>
+        <h1>web development with a touch of pink</h1>
+      </div>
 
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
+    </div>
 
   </Layout>
 </template>
 
 <script>
+import Logo from '~/components/Logo'
 export default {
   metaInfo: {
-    title: 'Hello, world!'
-  }
+    title: 'vonByte.ch - passionated web developer',
+    titleTemplate: '%s'
+  },
+  components: {
+    Logo
+  },
 }
 </script>
 
-<style>
-.home-links a {
-  margin-right: 1rem;
+<style scoped lang="scss">
+.hero {
+  &-body {
+    top: -4rem
+  }
+  .vb-logo {
+    animation: 2s grow;
+    margin: auto;
+    width: 80%;
+    max-width: 800px;
+
+    + h1 {
+      animation: 2s grow;
+      margin-top: 2rem;
+      font-size: $size-4;
+      @include from($tablet) {
+        font-size: $size-3;
+      }
+      @include from($desktop) {
+        font-size: $size-2;
+      }
+    }
+  }
 }
 </style>

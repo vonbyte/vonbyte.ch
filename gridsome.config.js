@@ -16,7 +16,7 @@ function addStyleResource (rule) {
     .loader('style-resources-loader')
     .options({
       patterns: [
-        path.resolve(__dirname, './src/assets/sass/_variables.scss'),
+        path.resolve(__dirname, './src/assets/scss/utils/_all.scss')
       ],
     })
 }
@@ -25,7 +25,7 @@ module.exports = {
   siteName: 'vonByte',
   siteDescription: 'My personal site and resume',
   siteUrl: 'vonbyte.vb',
-  titleTemplate: '%s | <sitename>',
+  titleTemplate: '%s | vonByte.ch',
   plugins: [],
   chainWebpack (config) {
     // Load variables for all vue-files
@@ -43,6 +43,9 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
+        implementation: require('dart-sass')
+      },
+      sass: {
         implementation: require('dart-sass')
       },
       postcss: {

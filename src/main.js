@@ -3,8 +3,6 @@
 
 // Import main css
 require('~/assets/scss/main.scss')
-// Import Icons
-import Unicon from 'vue-unicons'
 
 // Import Default Layout
 import DefaultLayout from '~/layouts/Default.vue'
@@ -13,5 +11,9 @@ import DefaultLayout from '~/layouts/Default.vue'
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
-  Vue.use(Unicon)
+  if (process.isClient) {
+    const Unicon = require('vue-unicons').default
+
+    Vue.use(Unicon);
+  }
 }
