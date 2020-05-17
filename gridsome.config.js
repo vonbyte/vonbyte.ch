@@ -1,6 +1,3 @@
-// This is where project configuration and plugin options are located.
-// Learn more: https://gridsome.org/docs/config
-
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
@@ -23,19 +20,23 @@ function addStyleResource (rule) {
 
 module.exports = {
   siteName: 'vonByte',
-  siteDescription: 'My personal site and resume',
   siteUrl: 'vonbyte.vb',
   titleTemplate: '%s | vonByte.ch',
-  plugins: [],
+  plugins: [
+    {
+      use: 'gridsome-source-storyblok',
+      options: {
+        client: {
+          accessToken: 'i05NpNRl1dAUoD9ZR1ENCQtt'
+        },
+        version: 'draft',
+        typeName: 'Storyblok'
+      }
+    }
+  ],
   chainWebpack (config) {
     // Load variables for all vue-files
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
-
-    types.forEach(type => {
-      addStyleResource(config.module.rule('sass').oneOf(type))
-    })
-
-    // or if you use scss
     types.forEach(type => {
       addStyleResource(config.module.rule('scss').oneOf(type))
     })
@@ -43,9 +44,6 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        implementation: require('dart-sass')
-      },
-      sass: {
         implementation: require('dart-sass')
       },
       postcss: {
