@@ -29,6 +29,11 @@ export default {
   components: {
     Logo
   },
+  data () {
+    return {
+      slug: "settings/global"
+    }
+  },
   computed: {
     story () {
       return this.$page.storyblokEntry

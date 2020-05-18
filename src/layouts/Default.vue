@@ -4,28 +4,7 @@
             <div class="menu-toggler" :class="showMenu ? 'has-menu' : null">
                 <span @click="showMenu = !showMenu">{{showMenu ? 'Close' : 'About Me'}}</span>
             </div>
-            <nav :class="showMenu ? 'show-menu' : 'hide-menu'">
-                <ul class="columns is-multiline is-gapless menu">
-                    <li class="column is-12-small is-6-tablet is-4-desktop">
-                        <g-link to="/profile/"><span>Profile</span></g-link>
-                    </li>
-                    <li class="column is-12-small is-6-tablet is-4-desktop">
-                        <g-link to="/experience/"><span>Experience</span></g-link>>
-                    </li>
-                    <li class="column is-12-small is-6-tablet is-4-desktop">
-                        <g-link to="/skills/"><span>Skills</span></g-link>>
-                    </li>
-                    <li class="column is-12-small is-6-tablet is-4-desktop">
-                        <g-link to="/work/"><span>Work</span></g-link>>
-                    </li>
-                    <li class="column is-12-small is-6-tablet is-4-desktop">
-                        <g-link to="/blog/"><span>Blog</span></g-link>>
-                    </li>
-                    <li class="column is-12-small is-6-tablet is-4-desktop">
-                        <g-link to="/contact/"><span>Contact</span></g-link>>
-                    </li>
-                </ul>
-            </nav>
+            <navigation :show-menu="showMenu"></navigation>
         </header>
         <main>
             <slot/>
@@ -35,12 +14,16 @@
 </template>
 
 <script>
+import Navigation from '../storyblok/components/Navigation'
 export default {
   props: {
     isLanding: {
       type: Boolean,
       default: false
     }
+  },
+  components: {
+    Navigation
   },
   data () {
     return {

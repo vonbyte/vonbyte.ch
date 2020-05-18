@@ -34,7 +34,6 @@ module.exports = {
           accessToken: 'i05NpNRl1dAUoD9ZR1ENCQtt'
         },
         version: 'draft',
-        typeName: 'Storyblok'
       }
     }
   ],
