@@ -9,7 +9,8 @@ import DefaultLayout from '~/layouts/Default.vue'
 
 // Import Stroyblok Components
 import Page from './storyblok/components/Page'
-import PlainContentBlock from './storyblok/components/PlainContentBlock'
+import Plaincontent from './storyblok/components/Plaincontent'
+import Teaser from './storyblok/components/Teaser'
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
@@ -17,7 +18,8 @@ export default function (Vue, { router, head, isClient }) {
 
   // Set Storyblok Components
   Vue.component('Page', Page)
-  Vue.component('PlainContentBlock', PlainContentBlock)
+  Vue.component('Plaincontent', Plaincontent)
+  Vue.component('Teaser', Teaser)
 
   if (process.isClient) {
     const Unicon = require('vue-unicons').default

@@ -3,29 +3,7 @@
 
 module.exports = function (api) {
   api.loadSource(async ({ addSchemaTypes, addCollection }) => {
-    addSchemaTypes(`
-    type StoryblokSetting implements Node {
-      content: JSONObject
-      name: String!
-      created_at: Date
-      published_at: Date
-      id: ID!
-      slug: String!
-      full_slug: String!
-      uuid: String!
-      real_path: String
-      lang: String
-      position: Int
-      is_startpage: Boolean
-      parent_id: Int
-      group_id: String
-      first_published_at: Date
-      release_id: Int
-      meta_data: JSONObject
-      sort_by_date: Date
-    }
-  `)
-    addCollection('StoryblokSetting')
+
   })
 
 
