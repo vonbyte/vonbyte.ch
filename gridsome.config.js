@@ -22,6 +22,10 @@ module.exports = {
   siteName: 'vonByte',
   siteUrl: 'vonbyte.vb',
   titleTemplate: '%s | vonByte.ch',
+  icon: {
+    favicon: './src/favicon-32x32.png',
+    touchicon: './src/favicon-196x196.png'
+  },
   plugins: [
     {
       use: 'gridsome-source-storyblok',

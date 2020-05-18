@@ -7,7 +7,7 @@
             <nav :class="showMenu ? 'show-menu' : 'hide-menu'">
                 <ul class="columns is-multiline is-gapless menu">
                     <li class="column is-12-small is-6-tablet is-4-desktop">
-                        <g-link to="/about/"><span>Profile</span></g-link>
+                        <g-link to="/profile/"><span>Profile</span></g-link>
                     </li>
                     <li class="column is-12-small is-6-tablet is-4-desktop">
                         <g-link to="/experience/"><span>Experience</span></g-link>>
