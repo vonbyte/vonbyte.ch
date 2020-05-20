@@ -1,7 +1,9 @@
 <template>
     <div class="layout hero is-fullheight" :class="isLanding ? null : 'is-content-top'">
         <header class="header">
-            <div class="menu-toggler" :class="showMenu ? 'has-menu' : null">
+            <div class="menu-toggler" :class="menuClass">
+                <g-link v-if="!isLanding" to="/"><logo/>
+                </g-link>
                 <span @click="showMenu = !showMenu">{{showMenu ? 'Close' : 'About Me'}}</span>
             </div>
             <navigation :show-menu="showMenu"></navigation>
@@ -15,6 +17,7 @@
 
 <script>
 import Navigation from '../storyblok/components/Navigation'
+import Logo from '../components/Logo'
 export default {
   props: {
     isLanding: {
@@ -23,11 +26,26 @@ export default {
     }
   },
   components: {
-    Navigation
+    Navigation,
+    Logo
   },
   data () {
     return {
       showMenu: false
+    }
+  },
+  computed: {
+    menuClass () {
+      let alignClass = this.showMenu && this.isLanding ? 'has-menu' : ''
+      let contentClass = this.isLanding ? 'is-landing-toggler' : ''
+      let menuClass = alignClass + ' ' + contentClass
+      return menuClass.trim()
+    },
+    togglerText () {
+      let alignClass = this.showMenu && this.isLanding ? 'has-menu' : ''
+      let contentClass = this.isLanding ? 'is-landing-toggler' : ''
+      let menuClass = alignClass + ' ' + contentClass
+      return menuClass.trim()
     }
   }
 }
@@ -40,5 +58,9 @@ export default {
         &.is-content-top {
             justify-content: flex-start;
         }
+    }
+    .vb-logo {
+        width : 80%;
+        max-width: 120px;
     }
 </style>

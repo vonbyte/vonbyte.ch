@@ -2,8 +2,8 @@
   <Layout :isLanding="story.content.component === 'landingpage'">
     <div class="hero-body is-relative">
       <div class="container has-text-centered">
-        <logo/>
-        <h1>{{story.content.headline}}</h1>
+        <logo wrapper-class="bigLogo" :has-main-heading="true"/>
+        <h2>{{story.content.headline}}</h2>
       </div>
     </div>
   </Layout>
@@ -58,15 +58,17 @@ export default {
 <style scoped lang="scss">
 .hero {
   &-body {
-    top: -4rem
+    top: -2rem;
+    @media screen and (min-height: 640px){
+      top: -5rem
+    }
+
   }
   .vb-logo {
     animation: 2s grow;
-    margin: auto;
-    width: 80%;
-    max-width: 800px;
 
-    + h1 {
+
+    + h2 {
       animation: 2s grow;
       margin-top: 2rem;
       font-size: $size-4;
@@ -75,8 +77,17 @@ export default {
       }
       @include from($desktop) {
         font-size: $size-2;
+        margin-top: 3rem;
       }
     }
   }
 }
+  @keyframes grow {
+    0% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 </style>

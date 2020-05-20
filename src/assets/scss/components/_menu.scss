@@ -1,24 +1,32 @@
 .menu-toggler {
     z-index: 100;
-    span {
-        cursor: pointer;
+    > span {
+        @extend a
+    }
+    > a:not(:hover):not(:active) {
+        color: $black;
     }
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     font-size: 1.2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease-out;
     @include from($tablet) {
         font-size: 1.6rem;
     }
-    @include from($desktop) {
-        font-size: 2rem;
-    }
-    @include from($widescreen) {
-        height: 6rem;
-        padding-top: 2rem;
+    &.is-landing-toggler {
+        height: 4rem;
+        justify-content: center;
+
+        @include from($desktop) {
+            font-size: 2rem;
+        }
+        @include from($widescreen) {
+            height: 6rem;
+            padding-top: 2rem;
+        }
     }
     &.has-menu {
         background: $white;
