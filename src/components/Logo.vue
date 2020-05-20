@@ -21,15 +21,27 @@ export default {
 </script>
 <style lang="scss">
     .vb-logo {
+        flex-flow: row nowrap;
+        align-items: center;
+        position: relative;
 
         svg {
             -webkit-backface-visibility: hidden;
             -webkit-transform: translateZ(0) scale(1.0, 1.0);
             transform: translateZ(0);
+            height: 2rem;
+            width: auto;
         }
-
+        > div {
+            margin-left: 0.3rem;
+            font-size: 1.3rem;
+            @include from($desktop) {
+                font-size: 1.5rem;
+            }
+        }
         &.bigLogo {
             width: 70%;
+            height: auto;
             max-width: 300px;
             flex-flow: column wrap;
             align-items: center;
@@ -37,9 +49,7 @@ export default {
 
             svg {
                 width: 100%;
-            }
-            > div {
-                font-size: 3rem;
+                height: auto
             }
         }
         h1 {

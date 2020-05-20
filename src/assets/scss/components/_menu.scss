@@ -1,11 +1,23 @@
 .menu-toggler {
     z-index: 100;
     > span {
-        @extend a
+        @extend a;
+        @include from($desktop) {
+            margin-right: 2rem;;
+        }
     }
     > a:not(:hover):not(:active) {
         color: $black;
     }
+    > a {
+        @include touch {
+            margin-left: 0.5rem;
+        }
+        @include from($desktop) {
+            margin-left: 2rem;
+        }
+    }
+
     width: 100%;
     height: 3rem;
     font-size: 1.2rem;
@@ -14,7 +26,7 @@
     align-items: center;
     transition: all 0.3s ease-out;
     @include from($tablet) {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
     &.is-landing-toggler {
         height: 4rem;
@@ -127,5 +139,57 @@ nav {
                 }
             }
         }
+    }
+}
+.hamburger .line {
+
+}
+
+.hamburger:hover {
+    cursor: pointer;
+}
+
+.hamburger {
+    margin: 0 1rem;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    .line {
+        width: 26px;
+        height: 2px;
+        background-color: $black;
+        display: block;
+        margin: 6px auto;
+        border-radius: 1px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    &.is-active {
+        transform: rotate(-45deg);
+        .line {
+            width: 24px;
+            background-color: $primary;
+            transition: all 0.3s ease-in-out;
+            &:nth-child(2) {
+                opacity: 0;
+            }
+
+            &:nth-child(1) {
+                transform: translateY(8px);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(-8px) rotate(90deg);
+            }
+        }
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: calc(50% - 15px);
+        left: calc(50% - 15px);
+        transition: all 0.3s ease-in-out;
     }
 }
