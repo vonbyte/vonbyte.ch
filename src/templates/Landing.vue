@@ -15,7 +15,7 @@ export default {
   name: 'LandingLayout',
   metaInfo() {
     return {
-      title: this.seo.title,
+      title: this.seo.title || 'TITEL',
       titleTemplate: '%s',
       meta: [
         { name: 'description', content: this.seo.description },
