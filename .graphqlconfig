@@ -1,6 +1,6 @@
 {
   "name":       "vonByte",
-  "schemaPath": "my_endpoint_schema.graphql",
+  "schemaPath": "vonbyte_schema.graphql",
   "extensions": {
     "endpoints": {
       "vonByte Endpoint": {

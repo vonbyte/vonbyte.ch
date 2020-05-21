@@ -13,3 +13,5 @@ node_modules
 /_bak
 /dist/.well-known
 /dist/stats
+/dist/errors
+vonbyte_schema.graphql

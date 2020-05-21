@@ -1,24 +1,44 @@
 .menu-toggler {
     z-index: 100;
-    span {
-        cursor: pointer;
+    > span {
+        @extend a;
+        @include from($desktop) {
+            margin-right: 2rem;;
+        }
     }
+    > a:not(:hover):not(:active) {
+        color: $black;
+    }
+    > a {
+        @include touch {
+            margin-left: 0.5rem;
+        }
+        @include from($desktop) {
+            margin-left: 2rem;
+        }
+    }
+
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     font-size: 1.2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease-out;
     @include from($tablet) {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
-    @include from($desktop) {
-        font-size: 2rem;
-    }
-    @include from($widescreen) {
-        height: 6rem;
-        padding-top: 2rem;
+    &.is-landing-toggler {
+        height: 4rem;
+        justify-content: center;
+        animation: 3s moveUp;
+        @include from($desktop) {
+            font-size: 1.4rem;
+        }
+        @include from($widescreen) {
+            height: 6rem;
+            padding-top: 2rem;
+        }
     }
     &.has-menu {
         background: $white;
@@ -119,5 +139,70 @@ nav {
                 }
             }
         }
+    }
+}
+.hamburger .line {
+
+}
+
+.hamburger:hover {
+    cursor: pointer;
+}
+
+.hamburger {
+    margin: 0 1rem;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    .line {
+        width: 26px;
+        height: 2px;
+        background-color: $black;
+        display: block;
+        margin: 6px auto;
+        border-radius: 1px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    &.is-active {
+        transform: rotate(-45deg);
+        .line {
+            width: 24px;
+            background-color: $primary;
+            transition: all 0.3s ease-in-out;
+            &:nth-child(2) {
+                opacity: 0;
+            }
+
+            &:nth-child(1) {
+                transform: translateY(8px);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(-8px) rotate(90deg);
+            }
+        }
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: calc(50% - 15px);
+        left: calc(50% - 15px);
+        transition: all 0.3s ease-in-out;
+    }
+}
+@keyframes moveUp {
+    0% {
+        margin-top: 6rem;
+        //transform: scale(1);
+    }
+    40% {
+        margin-top: 6rem;
+    }
+    100% {
+        margin-top: 0;
+        //transform: scale(1);
     }
 }

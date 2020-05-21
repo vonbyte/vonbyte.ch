@@ -11,6 +11,7 @@
   "dependencies": {
     "bulma": "^0.8.2",
     "gridsome": "^0.7.0",
+    "gridsome-source-storyblok": "^1.0.1",
     "vue-unicons": "^2.1.0"
   },
   "devDependencies": {
