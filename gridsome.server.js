@@ -24,7 +24,7 @@ module.exports = function (api) {
     // Create a Page for each content
     data.allStoryblokEntry.edges.forEach(({ node }) => {
 
-      if (node.full_slug !== 'global') {
+      if (node.full_slug !== 'global' && node.full_slug !== 'blog/zweiter-post' && node.full_slug !== 'skills' && node.full_slug !== 'experience' && node.full_slug !== 'contact' && node.full_slug !== 'blog/erster-post') {
 
         let path = `/${node.full_slug}`
         let component = './src/templates/Storyblok.vue'
@@ -35,15 +35,14 @@ module.exports = function (api) {
           component = './src/templates/Landing.vue'
           showHome = false
         }
-
-        createPage({
-          path,
-          component,
-          context: {
-            id: node.id,
-            showHome
-          }
-        })
+          createPage({
+            path,
+            component,
+            context: {
+              id: node.id,
+              showHome
+            }
+          })
       }
     })
   })
