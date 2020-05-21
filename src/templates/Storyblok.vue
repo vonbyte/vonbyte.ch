@@ -26,10 +26,10 @@ export default {
       titleTemplate: '%s',
       meta: [
         { name: 'description', content: this.seo ? this.seo.description : 'MISING DESCRIPTION'},
-        //{ name: 'og:title', content: this.seo.og_title || this.seo.title },
-        //{ name: 'og:description', content: this.seo.og_description || this.seo.description },
-        //{ name: 'twitter:title', content: this.seo.twitter_title || this.seo.title },
-        //{ name: 'twitter:description', content: this.seo.twitter_description || this.seo.description },
+        { name: 'og:title', content: this.seo.og_title || this.seo.title },
+        { name: 'og:description', content: this.seo.og_description || this.seo.description },
+        { name: 'twitter:title', content: this.seo.twitter_title || this.seo.title },
+        { name: 'twitter:description', content: this.seo.twitter_description || this.seo.description },
       ]
     }
   },

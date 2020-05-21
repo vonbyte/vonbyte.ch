@@ -7,10 +7,14 @@ require('~/assets/scss/main.scss')
 // Import Default Layout
 import DefaultLayout from '~/layouts/Default.vue'
 
-// Import Stroyblok Components
+// Import Storyblok Components
 import Page from './storyblok/components/Page'
 import Plaincontent from './storyblok/components/Plaincontent'
 import Teaser from './storyblok/components/Teaser'
+import Timeline from './storyblok/components/Timeline'
+
+// Import Mixins
+import helpers from '../mixins/helpers'
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
@@ -20,10 +24,12 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Page', Page)
   Vue.component('Plaincontent', Plaincontent)
   Vue.component('Teaser', Teaser)
+  Vue.component('Timeline', Timeline)
+
+  // Set global mixins
+  Vue.mixin(helpers)
 
   if (process.isClient) {
-    const Unicon = require('vue-unicons').default
 
-    Vue.use(Unicon);
   }
 }
