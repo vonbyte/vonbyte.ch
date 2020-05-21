@@ -26,14 +26,14 @@
     align-items: center;
     transition: all 0.3s ease-out;
     @include from($tablet) {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     &.is-landing-toggler {
         height: 4rem;
         justify-content: center;
-
+        animation: 3s moveUp;
         @include from($desktop) {
-            font-size: 2rem;
+            font-size: 1.4rem;
         }
         @include from($widescreen) {
             height: 6rem;
@@ -191,5 +191,18 @@ nav {
         top: calc(50% - 15px);
         left: calc(50% - 15px);
         transition: all 0.3s ease-in-out;
+    }
+}
+@keyframes moveUp {
+    0% {
+        margin-top: 6rem;
+        //transform: scale(1);
+    }
+    40% {
+        margin-top: 6rem;
+    }
+    100% {
+        margin-top: 0;
+        //transform: scale(1);
     }
 }

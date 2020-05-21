@@ -36,19 +36,20 @@ export default {
             margin-left: 0.3rem;
             font-size: 1.3rem;
             @include from($desktop) {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
         }
         &.bigLogo {
             width: 70%;
             height: auto;
-            max-width: 300px;
+            max-width: 400px;
             flex-flow: column wrap;
             align-items: center;
             margin: auto;
 
             svg {
                 width: 100%;
+                max-width: 280px;
                 height: auto
             }
         }

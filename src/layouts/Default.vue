@@ -1,7 +1,7 @@
 <template>
     <div class="layout hero is-fullheight" :class="isLanding ? null : 'is-content-top'">
         <header class="header">
-            <div class="menu-toggler" :class="menuClass">
+            <div class="menu-toggler text-center" :class="menuClass">
                 <g-link v-if="!isLanding" to="/">
                     <logo wrapper-class="headerLogo"/>
                 </g-link>
@@ -11,7 +11,7 @@
                     <span class="line"></span>
                     <span class="line"></span>
                 </div>
-                <span class="is-hidden-touch" @click="showMenu = !showMenu">{{showMenu ? 'Close' : 'About'}}</span>
+                <span class="is-hidden-touch" @click="showMenu = !showMenu">{{showMenu ? 'Close' : 'About me'}}</span>
             </div>
             <navigation :show-menu="showMenu"></navigation>
         </header>
