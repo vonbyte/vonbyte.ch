@@ -4,22 +4,20 @@
             <component :is="ucFirst(blok.type)"></component>
         </div>
         <div class="is-hidden-touch column is-3-desktop timeline-entry__date">
-            <p v-html="splittedDate"></p>
+            <p v-html="formattedSmallDate"></p>
         </div>
         <div class="column is-9-desktop is-7-fullhd timeline-entry__block">
             <div class="timeline-entry__content">
-                <p class="is-hidden-desktop timeline-entry__date">{{blok.Date}}</p>
-                <h2 class="timeline-entry__content-title">{{blok.Heading}}</h2>
+                <p v-html="formattedDate" class="is-hidden-desktop timeline-entry__date"></p>
+                <h2 class="timeline-entry__content-title">{{blok.heading}}</h2>
+                <p v-if="blok.graduation" class="timeline-entry__content-graduation"><degree/>&nbsp;{{blok.graduation}}</p>
                 <div  v-if="blok.company" class="timeline-entry__content-company">
-                    <span class="timeline-entry__content-description"><building/>&nbsp;{{blok.company}}</span>
-                    <span v-if="blok.company_url">, <web/>&nbsp;{{blok.company_url}}</span>
+                    <span><building/>&nbsp;{{blok.company}}</span>
+                    <span v-if="blok.company_url.cached_url">, <br class="is-hidden-tablet"/><web/>&nbsp;{{blok.company_url.cached_url}}</span>
                 </div>
                 <p class="timeline-entry__content-description">{{blok.description}}</p>
-                <p v-if="blok.graduation" class="timeline-entry__content-graduation"><degree/>&nbsp;{{blok.graduation}}</p>
                 <div class="timeline-entry__content-tags">
-                    <div>Tag 1</div>
-                    <div>Tag 2</div>
-                    <div>Langer Tag 3</div>
+                    <div v-for="(tech,index) in blok.technologies" :key="index">{{tech}}</div>
                 </div>
             </div>
         </div>
@@ -40,7 +38,7 @@ export default {
   name: 'TimelineEntry',
   props: ['blok'],
   components: {
-    Education, Job, School, Other, Degree
+    Education, Job, School, Other, Degree, Web, Building
   },
   data () {
     return {
@@ -49,16 +47,31 @@ export default {
 
   },
   computed: {
-    splittedDate () {
-      let blokDate = this.stripTags(this.blok.Date)
-      if (blokDate.indexOf(' - ') !== -1) {
-          return blokDate.replace(' - ',' -<br/>') + '&nbsp;&nbsp;&nbsp;'
-      }
-      return blokDate
+    formattedSmallDate () {
+      return this.formatDate(true)
+    },
+    formattedDate () {
+      return this.formatDate()
     }
   },
+  methods: {
+    formatDate (small) {
+      const isSmall = small || false
+      let startDate = this.$dayjs(this.blok.startDate)
+      let endDate = this.blok.endDate ? this.$dayjs(this.blok.endDate) : null
+      const separator = isSmall ? ' - <br/>' : ' - '
 
+      if (endDate && !startDate.isSame(endDate)) {
+        return startDate.format('MMM YYYY')+separator+endDate.format('MMM YYYY')+"&nbsp;&nbsp;&nbsp;"
+      }
+      if (this.blok.current) {
+        return startDate.format('MMM YYYY')+separator+'Heute'+"&nbsp;&nbsp;&nbsp;"
+      }
+      return startDate.format('MMM YYYY')
+    }
+  },
   mounted () {
+    //console.log(this.$dayjs().format())
   }
 }
 </script>
@@ -68,7 +81,6 @@ export default {
         opacity: 0;
         height: 0;
         transform: scaleY(0.8);
-        transition: 1.5s opacity ease-out, 0.5s transform ease-in;
         position: relative;
 
         &__image {
@@ -132,26 +144,48 @@ export default {
 
 
             &-title {
-                font-size: 1.5em;
+                font-size: 1.3rem;
                 font-weight: $weight-semibold;
             }
             &-company {
                 font-style: italic;
-                font-size: 1.1em;
+                font-size: 1.05rem;
+                margin-top: 0.5rem;
                 margin-bottom: 0.5rem;
+                vertical-align: middle;
+                svg {
+                    height: 1.3rem;
+                    vertical-align: middle;
+                    margin-bottom: 0.25em;
+                }
             }
             &-description {
                 margin-bottom: 0.5rem;
+                white-space: pre-wrap;
+                padding-left: 1.5rem;
+            }
+            &-graduation {
+                margin-top: 0.3rem;
+                font-size: 1.05rem;
+                font-weight: bold;
+                text-indent: -1.75rem;
+                margin-left: 1.75rem;
+                svg {
+                    height: 1.5rem;
+                    vertical-align: middle;
+                }
             }
             &-tags {
                 display: flex;
                 flex-flow: row wrap;
+                padding-left: 1.5rem;
                 > div {
                     padding: 0.3rem 0.5rem;
                     font-size: 0.8em;
                     border-radius: 4px;
                     background: $primary;
-                    margin-right: 0.3rem;
+                    margin-right: 0.5rem;
+                    margin-top: 0.5rem;
                 }
             }
         }
@@ -159,7 +193,7 @@ export default {
             opacity: 1;
             transform: scaleY(1);
             height: auto;
-            transition: 1.5s opacity ease-out, 0.5s transform ease-out;
+            transition: 2s opacity ease-out, 0.8s transform ease-in;
             .timeline-entry__image {
                 position: absolute;
                 left: 12px;

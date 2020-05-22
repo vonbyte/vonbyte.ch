@@ -16,7 +16,14 @@ import Timeline from './storyblok/components/Timeline'
 // Import Mixins
 import helpers from '../mixins/helpers'
 
+// import external librabies
+import dayjs from 'dayjs'
+
 export default function (Vue, { router, head, isClient }) {
+
+  // Set external libraies
+  Vue.prototype.$dayjs = dayjs
+
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
 
