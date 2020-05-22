@@ -11,13 +11,16 @@
                     <span class="line"></span>
                     <span class="line"></span>
                 </div>
-                <span class="is-hidden-touch" :class="showMenu ? 'is-active' : null" @click="showMenu = !showMenu">{{showMenu ? 'Close' : 'About me'}}</span>
+                <span class="is-hidden-touch" :class="showMenu ? 'is-active' : null"
+                      @click="showMenu = !showMenu">{{showMenu ? 'Close' : 'About me'}}</span>
             </div>
             <navigation :show-menu="showMenu"></navigation>
         </header>
+        <transition name="fade" appear>
         <main>
             <slot/>
         </main>
+        </transition>
         <footer></footer>
     </div>
 </template>
@@ -39,7 +42,8 @@ export default {
   },
   data () {
     return {
-      showMenu: false
+      showMenu: false,
+      currentRoute: null
     }
   },
   methods: {
@@ -54,7 +58,15 @@ export default {
       let menuClass = alignClass + ' ' + contentClass
       return menuClass.trim()
     },
-
+  },
+  mounted () {
+    this.currentRoute = this.$route
+  },
+  updated () {
+    if (this.$route !== this.currentRoute) {
+      this.showMenu = false
+      this.currentRoute = this.$route
+    }
   }
 }
 </script>
@@ -66,11 +78,19 @@ export default {
 
         &:not(.is-landing) {
             justify-content: flex-start;
+
             .header {
-                box-shadow: 0 0 10px 0 rgba($primary,0.5);
+                box-shadow: 0 0 10px 0 rgba($primary, 0.5);
             }
         }
 
+    }
+    .fade-enter-active {
+        transition: opacity 2s;
+    }
+
+    .fade-enter {
+        opacity: 0;
     }
 
 </style>
