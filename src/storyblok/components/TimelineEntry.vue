@@ -62,12 +62,12 @@ export default {
       const separator = isSmall ? ' - <br/>' : ' - '
 
       if (endDate && !startDate.isSame(endDate)) {
-        return startDate.format('MMM YYYY')+separator+endDate.format('MMM YYYY')+"&nbsp;&nbsp;&nbsp;"
+        return startDate.locale('de').format('MMMM YYYY')+separator+endDate.locale('de').format('MMMM YYYY')+"&nbsp;&nbsp;&nbsp;"
       }
       if (this.blok.current) {
-        return startDate.format('MMM YYYY')+separator+'Heute'+"&nbsp;&nbsp;&nbsp;"
+        return startDate.locale('de').format('MMMM YYYY')+separator+'Heute'+"&nbsp;&nbsp;&nbsp;"
       }
-      return startDate.format('MMM YYYY')
+      return startDate.locale('de').format('MMMM YYYY')
     }
   },
   mounted () {

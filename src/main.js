@@ -21,6 +21,9 @@ import dayjs from 'dayjs'
 
 export default function (Vue, { router, head, isClient }) {
 
+  require('dayjs/locale/de')
+  require('dayjs/locale/en')
+
   // Set external libraies
   Vue.prototype.$dayjs = dayjs
 
