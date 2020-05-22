@@ -9,9 +9,3 @@ export default {
   name: 'school'
 }
 </script>
-
-<style scoped lang="scss">
-    svg {
-        fill: $grey-darker
-    }
-</style>

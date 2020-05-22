@@ -22,8 +22,7 @@ export default {
   methods: {
     animateEntry (el,index) {
       if (this.isInView(el)) {
-        el.style.opacity = 1
-        el.style.transform = 'scale(1)'
+        el.classList.add('in-view')
         this.entries.splice(index, 1)
       }
     },
