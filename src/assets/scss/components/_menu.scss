@@ -37,7 +37,18 @@
         }
         @include from($widescreen) {
             height: 6rem;
-            padding-top: 2rem;
+            padding-top: 2.5rem;
+        }
+        > span:not(.is-active) {
+            padding: 0 0.3rem;
+            border-left: 2px dashed rgba($pink,0.8);
+            border-right: 2px dashed rgba($pink,0.8);
+            transition: all 0.2s ease;
+            &:hover, &:active {
+                transition: all 0.2s ease;
+                border-left: 2px dashed rgba($oldPink,0.8);
+                border-right: 2px dashed rgba($oldPink,0.8);
+            }
         }
     }
     &.has-menu {
@@ -51,19 +62,15 @@
 
 nav {
     position: absolute;
-    bottom: calc(100% - 4rem);
+    bottom: calc(100% - 3rem);
     overflow: hidden;
     z-index: 100;
-    top: 4rem;
+    top: 3rem;
     left: 0;
     right: 0;
     width: 100%;
     height: auto;
     transition: all 0.6s ease-out;
-    @include from($widescreen) {
-        bottom: calc(100% - 6rem);
-        top: 6rem;
-    }
     &.show-menu {
         bottom: 0;
         transition: all 0.6s ease-in;
@@ -82,14 +89,12 @@ nav {
         li {
             padding:0;
             a {
+                @include centerAll;
                 color:$grey-darker;
                 width: 100%;
                 height: 100%;
                 padding-top: 1rem;
                 padding-bottom: 1rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 font-size: 2rem;
                 background: $secondary-light;
                 transition: all 0.2s linear;
@@ -141,19 +146,28 @@ nav {
         }
     }
 }
-.hamburger .line {
-
+.is-landing {
+    nav {
+        bottom: calc(100% - 4rem);
+        top: 4rem;
+        @include from($widescreen) {
+            bottom: calc(100% - 6rem);
+            top: 6rem;
+        }
+        &.show-menu {
+            bottom: 0;
+        }
+    }
 }
 
-.hamburger:hover {
-    cursor: pointer;
-}
 
 .hamburger {
     margin: 0 1rem;
     position: relative;
     transition: all 0.3s ease-in-out;
-
+    &:hover {
+        cursor: pointer;
+    }
     .line {
         width: 26px;
         height: 2px;

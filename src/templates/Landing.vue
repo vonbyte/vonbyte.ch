@@ -1,19 +1,20 @@
 <template>
-  <Layout :isLanding="story.content.component === 'landingpage'">
-    <div class="hero-body is-relative">
-      <div class="container has-text-centered">
-        <logo wrapper-class="bigLogo" :has-main-heading="true"/>
-        <h2>{{story.content.headline}}</h2>
-      </div>
-    </div>
-  </Layout>
+    <Layout :isLanding="story.content.component === 'landingpage'">
+        <div class="hero-body is-relative">
+            <div class="container has-text-centered">
+                <logo wrapper-class="bigLogo" :has-main-heading="true"/>
+                <h2>{{story.content.headline}}</h2>
+            </div>
+        </div>
+    </Layout>
 </template>
 
 <script>
 import Logo from '~/components/Logo'
+
 export default {
   name: 'LandingLayout',
-  metaInfo() {
+  metaInfo () {
     return {
       title: this.seo.title || 'TITEL',
       titleTemplate: '%s',
@@ -31,7 +32,7 @@ export default {
   },
   data () {
     return {
-      slug: "settings/global"
+      slug: 'settings/global'
     }
   },
   computed: {
@@ -47,47 +48,49 @@ export default {
 
 <page-query>
     query StoryblokEntry ($id: ID) {
-      storyblokEntry (id: $id) {
-        id,
-        slug,
-        content
-      }
+        storyblokEntry (id: $id) {
+            id,
+            slug,
+            content
+        }
     }
 </page-query>
 
 <style scoped lang="scss">
-.hero {
-  &-body {
-    top: -2rem;
-    @media screen and (min-height: 640px){
-      top: -5rem
+    .hero {
+        &-body {
+            top: -2rem;
+            @media screen and (min-height: 640px) {
+                top: -5rem
+            }
+
+        }
+
+        .vb-logo {
+            animation: 2s grow;
+
+
+            + h2 {
+                animation: 2s grow;
+                margin-top: 2rem;
+                font-size: $size-4;
+                @include from($tablet) {
+                    font-size: $size-3;
+                }
+                @include from($desktop) {
+                    font-size: $size-2;
+                    margin-top: 3rem;
+                }
+            }
+        }
     }
 
-  }
-  .vb-logo {
-    animation: 2s grow;
-
-
-    + h2 {
-      animation: 2s grow;
-      margin-top: 2rem;
-      font-size: $size-4;
-      @include from($tablet) {
-        font-size: $size-3;
-      }
-      @include from($desktop) {
-        font-size: $size-2;
-        margin-top: 3rem;
-      }
+    @keyframes grow {
+        0% {
+            transform: scale(0.9);
+        }
+        100% {
+            transform: scale(1);
+        }
     }
-  }
-}
-  @keyframes grow {
-    0% {
-      transform: scale(0.9);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
 </style>
