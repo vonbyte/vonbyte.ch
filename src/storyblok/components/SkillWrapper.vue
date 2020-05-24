@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="skills__showcase" :class="fadeClass">
-            <SkillGroup v-for="group in groups[activeGroup]" :key="group._uid" :group="group"/>
+            <SkillGroup v-for="group in groups[activeGroup]" :is-personal="activeGroup === 'Personal Skills'" :key="group._uid" :group="group"/>
         </div>
     </div>
 </template>
