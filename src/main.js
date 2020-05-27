@@ -12,6 +12,7 @@ import Page from './storyblok/components/Page'
 import Plaincontent from './storyblok/components/Plaincontent'
 import Teaser from './storyblok/components/Teaser'
 import Timeline from './storyblok/components/Timeline'
+import SkillWrapper from './storyblok/components/SkillWrapper'
 
 // Import Mixins
 import helpers from '../mixins/helpers'
@@ -35,11 +36,9 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Plaincontent', Plaincontent)
   Vue.component('Teaser', Teaser)
   Vue.component('Timeline', Timeline)
+  Vue.component('SkillWrapper', SkillWrapper)
 
   // Set global mixins
   Vue.mixin(helpers)
 
-  if (process.isClient) {
-
-  }
 }
