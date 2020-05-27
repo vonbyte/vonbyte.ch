@@ -3,7 +3,7 @@
         <template v-if="!isPersonal">
             <h2 class="skill-group__title">{{group.title}}</h2>
             <div class="columns is-multiline">
-                <skill-entry v-for="skill in group.entries" :key="skill._uid" :skill="skill"/>
+                <skill-entry v-for="skill in sortedEntries" :key="skill._uid" :skill="skill"/>
             </div>
         </template>
         <div v-else class="personal">
@@ -26,7 +26,12 @@ import Avatar from '../../components/Avatar'
 export default {
   name: 'SkillGroup',
   components: { SkillEntry, Avatar },
-  props: ['group', 'isPersonal']
+  props: ['group', 'isPersonal'],
+  computed: {
+    sortedEntries () {
+      return this.group.entries.sort((a, b) => (parseInt(a.knowhow) < parseInt(b.knowhow)) ? 1 : -1)
+    }
+  }
 }
 </script>
 
@@ -46,10 +51,10 @@ export default {
         }
     }
 
-    $cell-width: 120px;
+    $cell-width: 150px;
     $cell-height: $cell-width*.55;
     $cell-margin: 15px;
-    $grid-max-width: 800px;
+    $grid-max-width: 960px;
     $viewport-thereshold: $cell-width + $cell-margin;
 
     .personal {
@@ -69,7 +74,7 @@ export default {
                 height: $cell-height;
                 margin: $cell-height/2.1 $cell-margin/2 $cell-margin;
                 position: relative;
-                padding: 0.5em;
+                padding: 1rem;
                 text-align: center;
                 transition: transform 0.3s ease-in;
 
@@ -81,7 +86,7 @@ export default {
                     hyphens: auto;
                     word-break: break-word;
                     color: $black;
-                    font-size: 0.85rem;
+                    font-size: 0.9rem;
                     transition: opacity 350ms;
                 }
 
@@ -110,7 +115,7 @@ export default {
                 }
 
                 &:hover {
-                    transform: scale(1.1);
+                    transform: scale(1.05);
                     cursor: default;
                     transition: transform 0.3s ease-out;
                 }
