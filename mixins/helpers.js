@@ -30,6 +30,20 @@ export default {
         rect.bottom <= (window.innerHeight || html.clientHeight) &&
         rect.right <= (window.innerWidth || html.clientWidth)
       )
+    },
+    groupArrayOfObjects (array, key) {
+      return array.reduce(function (value, obj) {
+        (value[obj[key]] = value[obj[key]] || []).push(obj)
+        return value
+      }, {})
+    },
+    text2bin(str,) {
+      return str.replace(/[\s\S]/g, (str) => {
+        str = unpad(str.charCodeAt().toString(2));
+      })
+      function unPad(num) {
+        return "00000000".slice(String(num).length) + num;
+      }
     }
   }
 }
