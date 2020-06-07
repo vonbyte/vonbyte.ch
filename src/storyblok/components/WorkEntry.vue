@@ -233,18 +233,6 @@ export default {
                 }
             }
             @include from($widescreen) {
-                &:nth-child(2n) {
-                    .work-entry__content {
-                        right: -200%;
-                        left: -100%;
-                    }
-                }
-                &:nth-child(3n) {
-                    .work-entry__content {
-                        right: -100%;
-                        left: -200%;
-                    }
-                }
                 &:nth-child(4n) {
                     .work-entry__content {
                         right: 0;
@@ -255,6 +243,18 @@ export default {
                     .work-entry__content {
                         right: -300%;
                         left: 0;
+                    }
+                }
+                &:nth-child(4n+2) {
+                    .work-entry__content {
+                        right: -200%;
+                        left: -100%;
+                    }
+                }
+                &:nth-child(4n+3) {
+                    .work-entry__content {
+                        right: -100%;
+                        left: -200%;
                     }
                 }
             }
