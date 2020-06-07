@@ -14,8 +14,8 @@ export default {
 
 <style scoped lang="scss">
 .teaser {
-    h1 {
-        font-size : $size-1;
+    p {
+        margin: 2rem auto 3rem;
     }
 }
 </style>

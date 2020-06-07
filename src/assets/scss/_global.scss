@@ -21,5 +21,28 @@ html, body {
 }
 
 body {
+    line-height: 1.5;
+    font-size: 1.2rem;
+}
 
+h1, h2, h3, h4 {
+    font-family: $family-headline;
+}
+
+h1 {
+    font-size: $size-1;
+    margin-top: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: $size-2;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+h3 {
+    font-size: $size-3;
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
 }

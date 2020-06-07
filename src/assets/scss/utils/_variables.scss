@@ -21,7 +21,8 @@ $oldPink-dark: #452a2c;
 // Typography
 
 $family-serif: "Lora", "Times", serif;
-$family-sans-serif: "Poppins", "Verdana", "Arial", sans-serif;
+$family-sans-serif: "Poppins Light", "Verdana", "Arial", sans-serif;
+$family-sans-serif2: "Poppins", "Verdana", "Arial", sans-serif;
 $family-monospace: "Cousine", "Courier", monospace;
 $render-mode: optimizeLegibility;
 
@@ -157,6 +158,7 @@ $link-active-border: $link;
 // Typography
 
 $family-primary: $family-sans-serif;
+$family-headline: $family-sans-serif2;
 $family-secondary: $family-serif;
 $family-code: $family-monospace;
 

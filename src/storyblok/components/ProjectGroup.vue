@@ -26,20 +26,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 h2 {
     font-size: $size-3;
     text-align: center;
     border-bottom: 2px solid $oldPink;
     padding: 0.3rem 0.5rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
 }
     .work-group {
         &__description {
             text-align: center;
             font-size: 1.1rem;
             max-width: 800px;
-            margin: 1rem auto;
+            margin: 2rem auto;
         }
     }
 </style>

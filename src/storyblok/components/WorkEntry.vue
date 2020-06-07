@@ -99,7 +99,7 @@ export default {
             bottom: 1.1rem;
             left: 1.1rem;
             right: 1.1rem;
-            padding: 1rem;
+            padding: 2rem;
             display: flex;
             z-index: 1;
             justify-content: center;
@@ -155,10 +155,10 @@ export default {
             margin-bottom: 1rem;
         }
 
-        &__service {
+        &__services {
             font-size: $size-6;
-
         }
+
 
         &__image {
             img {
@@ -171,6 +171,7 @@ export default {
 
             .work-entry {
                 &__content {
+                    cursor: default;
                     left: 0;
                     right: 0;
                     top: 0;
@@ -184,6 +185,28 @@ export default {
                     }
                     &:hover, &:active {
                         border: none;
+                    }
+                }
+                &__text {
+                    text-align: left;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    > p {
+                        white-space: pre-line;
+                    }
+                }
+                &__services {
+
+                    li {
+                        display: inline-block;
+                        background: $secondary;
+                        padding: 0.5rem;
+                        margin-left: 0.5rem;
+                        font-size: $size-6;
+                        border-radius: 5px;
+                        color: $primary-light;
                     }
                 }
 
