@@ -13,6 +13,7 @@ import Plaincontent from './storyblok/components/Plaincontent'
 import Teaser from './storyblok/components/Teaser'
 import Timeline from './storyblok/components/Timeline'
 import SkillWrapper from './storyblok/components/SkillWrapper'
+import ProjectGroup from './storyblok/components/ProjectGroup'
 
 // Import Mixins
 import helpers from '../mixins/helpers'
@@ -37,6 +38,7 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Teaser', Teaser)
   Vue.component('Timeline', Timeline)
   Vue.component('SkillWrapper', SkillWrapper)
+  Vue.component('ProjectGroup',ProjectGroup)
 
   // Set global mixins
   Vue.mixin(helpers)
