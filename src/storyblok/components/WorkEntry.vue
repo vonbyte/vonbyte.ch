@@ -1,5 +1,6 @@
 <template>
-    <div class="column is-6-tablet is-4-desktop is-3-fullhd work-entry" :class="isActive ? 'work-entry--active' : ''"
+    <div class="column is-6-tablet is-4-desktop is-3-fullhd work-entry" @focusout="handleFocusOut"
+         tabindex="-1" :class="entryClass"
          @click="handleClick">
         <div class="work-entry__content">
             <transition name="fade" mode="out-in">
@@ -12,7 +13,8 @@
                         </li>
                     </ul>
                 </div>
-                <div v-else :key="'active'" class="columns is-desktop">
+                <div v-else :key="'active'" class="columns is-desktop"  @focus="handleFocus"
+                     >
                     <div class="work-entry__close" @click.stop="isActive = false">X</div>
                     <div class="column is-5-desktop work-entry__image">
                         <h3 class="work-entry__title">{{blok.title}}</h3>
@@ -43,10 +45,31 @@ export default {
       isActive: false
     }
   },
+  computed: {
+    entryClass () {
+      let className = this.isActive ? 'work-entry--active' : ''
+      if (this.blok.image) {
+        className = className + ' work-entry--has-image'
+      }
+      return className.trim()
+    }
+  },
   methods: {
     handleClick (e) {
       if (!this.isActive) {
         this.isActive = true
+        e.stopPropagation()
+
+        e.target.focus()
+      }
+    },
+    handleFocus () {
+      console.log('focused')
+
+    },
+    handleFocusOut () {
+      if (this.isActive) {
+        this.isActive = false
       }
     },
     getImage () {
@@ -73,9 +96,12 @@ export default {
     }
 
     .work-entry {
+        outline: none;
         @include keepRatio(100%);
         max-width: 500px;
-
+        @include until($tablet) {
+            margin: auto;
+        }
         &__close {
             position: absolute;
             top: 1rem;
@@ -175,18 +201,19 @@ export default {
                     left: 0;
                     right: 0;
                     top: 0;
-                    bottom: -60%;
+                    bottom: auto;
                     z-index: 100;
                     transition: 0.5s;
                     transition-delay: 0.4s;
                     transition-property: z-index, left, right, top, bottom;
                     @include from($tablet) {
-                        bottom: -80%;
+                        bottom: -40%;
                     }
                     &:hover, &:active {
                         border: none;
                     }
                 }
+
                 &__text {
                     text-align: left;
                     display: flex;
@@ -195,15 +222,17 @@ export default {
 
                     > p {
                         white-space: pre-line;
+                        font-size: $size-6;
                     }
                 }
                 &__services {
-
+                        margin-top: 3rem;
                     li {
                         display: inline-block;
                         background: $secondary;
                         padding: 0.5rem;
-                        margin-left: 0.5rem;
+                        margin-right: 0.5rem;
+                        margin-top: 0.5rem;
                         font-size: $size-6;
                         border-radius: 5px;
                         color: $primary-light;
@@ -219,8 +248,26 @@ export default {
                     }
                 }
             }
+            &.work-entry--has-image {
+                .work-entry__content {
+                    @include from($tablet) {
+                        bottom: -80%;
+                    }
+                    @include from($desktop) {
+                        .work-entry__entries {
+                            margin-top: 0;
+                        }
+                    }
+                }
 
+            }
             @include from($tablet) {
+                &:nth-child(odd) {
+                    .work-entry__content {
+                        left: 0;
+                        right: -100%
+                    }
+                }
                 &:nth-child(even) {
                     .work-entry__content {
                         right: 0;
@@ -229,7 +276,7 @@ export default {
                 }
 
             }
-            @include desktop-only {
+            @include from($desktop) {
                 &:nth-child(2n) {
                     .work-entry__content {
                         right: -100%;
@@ -255,7 +302,7 @@ export default {
                     }
                 }
             }
-            @include from($widescreen) {
+            @include from($fullhd) {
                 &:nth-child(4n) {
                     .work-entry__content {
                         right: 0;

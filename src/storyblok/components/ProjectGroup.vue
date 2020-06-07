@@ -35,6 +35,9 @@ h2 {
     margin-top: 2rem;
 }
     .work-group {
+        &__entries {
+            align-items:  center;
+        }
         &__description {
             text-align: center;
             font-size: 1.1rem;
