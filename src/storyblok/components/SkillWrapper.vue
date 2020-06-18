@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="skills__more">
-            <h3>...more Skills & Interests</h3>
+            <h3>but there is more...</h3>
             <div class="columns is-multiline">
                 <div class="column is-one-third-desktop has-text-centered" v-for="key in Object.keys(groups)">
                     <div class="skill__toggler" :class="activeGroup === key ? 'is-active' : null"
@@ -33,7 +33,7 @@ export default {
   props: ['blok'],
   data () {
     return {
-      activeGroup: '',
+      activeGroup: 'Professional Skills',
       fadeClass: '',
       topSkills: []
     }
@@ -105,12 +105,15 @@ export default {
         padding: 0.5rem 1rem;
         cursor: pointer;
         transition: all 0.5s ease-out;
-
-        &:hover, &:focus {
+        &.is-active {
+            background: $primary;
+            cursor: default;
+        }
+        &:hover:not(.is-active), &:focus:not(.is-active) {
             border-color: $oldPink;
-            color: $oldPink;
             transition: all 0.3s ease-in;
         }
+
     }
 
     .skills__more {
