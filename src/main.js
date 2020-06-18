@@ -14,6 +14,10 @@ import Teaser from './storyblok/components/Teaser'
 import Timeline from './storyblok/components/Timeline'
 import SkillWrapper from './storyblok/components/SkillWrapper'
 import ProjectGroup from './storyblok/components/ProjectGroup'
+import Grid from './storyblok/components/Grid'
+import ContactForm from './storyblok/components/ContactForm'
+import ContactItem from './storyblok/components/ContactItem'
+import ContentWrapper from './storyblok/components/ContentWrapper'
 
 // Import Mixins
 import helpers from '../mixins/helpers'
@@ -39,6 +43,10 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Timeline', Timeline)
   Vue.component('SkillWrapper', SkillWrapper)
   Vue.component('ProjectGroup',ProjectGroup)
+  Vue.component('Grid',Grid)
+  Vue.component('ContactForm',ContactForm )
+  Vue.component('ContactItem',ContactItem )
+  Vue.component('ContentWrapper',ContentWrapper )
 
   // Set global mixins
   Vue.mixin(helpers)
