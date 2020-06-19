@@ -15,6 +15,7 @@ export default {
 
 <style lang="scss" scoped>
 article {
+    margin-bottom: 1rem;
     &:not(:last-of-type) {
         &::after {
             content: '';
@@ -25,8 +26,6 @@ article {
             background: $primary;
         }
     }
-    h2 {
-        font-size: $size-2;
-    }
+
 }
 </style>

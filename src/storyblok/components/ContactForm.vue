@@ -3,7 +3,9 @@
         <div class="contact-form__header">
             <h2>{{blok.Title}}</h2>
         </div>
-        <form action="#" class="">
+        <form @submit="onSubmit" class="">
+            <input type="hidden" name="_subject" v-model="blok.form.subject" />
+            <input type="hidden" :name="honeypot" />
             <component :key="field._uid" v-for="field in blok.form" :blok="field" :is="field.component"></component>
             <div class="field is-grouped">
                 <div class="control">
@@ -22,15 +24,43 @@ export default {
   props: ['blok'],
   components: {
     InputField
+  },
+  data () {
+    return {
+      honeypot: ''
+    }
+  },
+  mounted() {
+
+      const random = Math.floor(Math.random() * 999999) + 100000;
+      this.honeypot ='_pot-'+random.toString()
+
+  },
+  methods: {
+    onSubmit(e) {
+      e.preventDefault()
+
+      let form = e.target
+      let data = new FormData(form)
+
+      // Check for spam bot
+      if (data.get(this.honeypot)) {
+        window.location.reload()
+      }
+      axios.post('https://formspree.io/mgenzyon',data)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
     .contact-form {
-        &__header {
-            margin-top: 3rem;
-        }
 
         form {
             max-width: 500px;

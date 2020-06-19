@@ -1,12 +1,7 @@
 <template>
-    <div class="hero-body">
-        <div class="container is-full-fullhd">
-            <div v-if="isSkills">
-                <SkillWrapper :blok="blok.body"/>
-            </div>
-            <component v-else :key="subblok._uid" v-for="subblok in blok.body" :blok="subblok" :is="subblok.component"></component>
+        <div class="container">
+            <component :key="subblok._uid" v-for="subblok in blok.body" :blok="subblok" :is="subblok.component"></component>
         </div>
-    </div>
 </template>
 
 <script>

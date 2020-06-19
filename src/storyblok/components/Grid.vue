@@ -1,9 +1,9 @@
 <template>
-    <div class="columns is-multiline" :class="rowClass" >
-        <div class="column" :key="column._uid" v-for="column in blok.columns">
-            <component :is="column.component" :blok="column"></component>
+        <div class="columns is-multiline" :class="rowClass">
+            <div class="column" :key="column._uid" v-for="column in blok.columns">
+                <component :is="column.component" :blok="column"></component>
+            </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
   computed: {
 
     rowClass () {
-     if(this.blok.stacked === 'none') {
+      if (this.blok.stacked === 'none') {
         return 'is-mobile'
       }
 

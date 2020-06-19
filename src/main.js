@@ -18,6 +18,7 @@ import Grid from './storyblok/components/Grid'
 import ContactForm from './storyblok/components/ContactForm'
 import ContactItem from './storyblok/components/ContactItem'
 import ContentWrapper from './storyblok/components/ContentWrapper'
+import Spacer from './storyblok/components/Spacer'
 
 // Import Mixins
 import helpers from '../mixins/helpers'
@@ -26,6 +27,8 @@ import helpers from '../mixins/helpers'
 import dayjs from 'dayjs'
 
 export default function (Vue, { router, head, isClient }) {
+
+  window.axios = require('axios')
 
   require('dayjs/locale/de')
   require('dayjs/locale/en')
@@ -46,7 +49,9 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Grid',Grid)
   Vue.component('ContactForm',ContactForm )
   Vue.component('ContactItem',ContactItem )
+  Vue.component('Spacer',Spacer )
   Vue.component('ContentWrapper',ContentWrapper )
+
 
   // Set global mixins
   Vue.mixin(helpers)
