@@ -2,10 +2,13 @@
     <div class="contact-form">
         <div class="contact-form__header">
             <h2>{{blok.Title}}</h2>
+            <div v-if="feedback.mode" class="notification" :class="`is-${feedback.mode}`">
+                <p>{{feedback.message}}</p>
+            </div>
         </div>
         <form @submit="onSubmit" class="">
-            <input type="hidden" name="_subject" v-model="blok.form.subject" />
-            <input type="hidden" :name="honeypot" />
+            <input type="text" name="_gotcha" style="display: none"/>
+            <input type="text" name="honeypot" style="display: none"/>
             <component :key="field._uid" v-for="field in blok.form" :blok="field" :is="field.component"></component>
             <div class="field is-grouped">
                 <div class="control">
@@ -27,7 +30,11 @@ export default {
   },
   data () {
     return {
-      honeypot: ''
+      honeypot: '',
+      feedback: {
+        mode: '',
+        message: ''
+      }
     }
   },
   mounted() {
@@ -42,6 +49,7 @@ export default {
 
       let form = e.target
       let data = new FormData(form)
+      data.append('_subject', this.blok.form.subject)
 
       // Check for spam bot
       if (data.get(this.honeypot)) {
@@ -50,9 +58,14 @@ export default {
       axios.post('https://formspree.io/mgenzyon',data)
       .then((response) => {
         console.log(response)
+        this.feedback.mode = 'success'
+        this.feedback.message = 'Thanks for your email'
+        form.reset()
       })
       .catch((err) => {
         console.log(err.response)
+        this.feedback.mode = 'error'
+        this.feedback.message = 'Something went wrong. Please try again.'
       })
     }
   }
@@ -61,9 +74,6 @@ export default {
 
 <style scoped lang="scss">
     .contact-form {
-
-        form {
             max-width: 500px;
-        }
     }
 </style>
