@@ -6,7 +6,6 @@ module.exports = function (api) {
 
   })
 
-
   api.createPages(async ({ graphql, createPage }) => {
 
     // Get all pages from Storyblok API
@@ -24,26 +23,26 @@ module.exports = function (api) {
     // Create a Page for each content
     data.allStoryblokEntry.edges.forEach(({ node }) => {
 
-      if (node.full_slug !== 'global') {
+      let path = `/${node.full_slug}`
+      let locale = path.match('(^\/)([a-z]{2})([$|\/])')[2]
 
-        let path = `/${node.full_slug}`
-        let component = './src/templates/Storyblok.vue'
-        let showHome = true
+      let component = './src/templates/Storyblok.vue'
+      let showHome = true
 
-        if (node.full_slug === 'home') {
-          path = '/'
-          component = './src/templates/Landing.vue'
-          showHome = false
-        }
-          createPage({
-            path,
-            component,
-            context: {
-              id: node.id,
-              showHome
-            }
-          })
+      if (node.full_slug.indexOf('/home') !== -1) {
+        path = `/${locale}/`
+        component = './src/templates/Landing.vue'
+        showHome = false
       }
+      createPage({
+        path,
+        component,
+        context: {
+          id: node.id,
+          locale,
+          showHome
+        }
+      })
     })
   })
 }

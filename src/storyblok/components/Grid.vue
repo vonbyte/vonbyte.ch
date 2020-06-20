@@ -1,5 +1,5 @@
 <template>
-        <div class="columns is-multiline" :class="rowClass">
+        <div class="columns is-marginless is-multiline" :class="rowClass">
             <div class="column" :key="column._uid" v-for="column in blok.columns">
                 <component :is="column.component" :blok="column"></component>
             </div>

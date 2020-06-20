@@ -37,6 +37,7 @@ export default {
   },
   computed: {
     story () {
+      console.log(this.$page)
       return this.$page.storyblokEntry
     },
     seo () {

@@ -14,7 +14,8 @@
     "dayjs": "^1.8.27",
     "gridsome": "^0.7.0",
     "gridsome-source-storyblok": "^1.0.1",
-    "vue-unicons": "^2.1.0"
+    "vue-unicons": "^2.1.0",
+    "marked": "^1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.6",

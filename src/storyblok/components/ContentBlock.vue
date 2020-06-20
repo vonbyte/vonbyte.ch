@@ -2,20 +2,14 @@
     <article>
         <h2>{{blok.Heading}}</h2>
         <p class="lead">{{blok.LeadText}}</p>
-        <p v-html="markdownText"></p>
+        <p>{{blok.Content}}</p>
     </article>
 </template>
 
 <script>
-import marked from 'marked'
 export default {
   name: 'Plaincontent',
-  props: ['blok'],
-  computed: {
-    markdownText () {
-      return marked(this.blok.Content)
-    }
-  }
+  props: ['blok']
 }
 </script>
 

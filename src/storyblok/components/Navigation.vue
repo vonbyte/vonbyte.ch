@@ -14,14 +14,13 @@ export default {
   props: [
     'showMenu'
   ],
-  data () {
-    return {
-      slug: "settings/global"
-    }
-  },
   computed: {
     menulinks () {
-      return this.$static.settings.edges[0].node.content.HeaderLinks
+      const settings = this.$static.settings.edges.find((edge) => {
+        console.log(edge)
+        return edge.node.full_slug.indexOf(this.$context.locale + '/global') !== -1
+      })
+      return settings.node.content.HeaderLinks
     }
   }
 }
@@ -33,10 +32,11 @@ export default {
 
 <static-query>
     query {
-        settings: allStoryblokEntry(filter: {full_slug: {eq: "settings/global"}} limit: 1) {
+        settings: allStoryblokEntry(filter: {name: {eq: "global"}}) {
             edges {
                 node {
                     id
+                    full_slug
                     content
                  }
             }

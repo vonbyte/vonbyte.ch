@@ -9,7 +9,9 @@ import DefaultLayout from '~/layouts/Default.vue'
 
 // Import Storyblok Components
 import Page from './storyblok/components/Page'
+import Blog from './storyblok/components/Blog'
 import Plaincontent from './storyblok/components/Plaincontent'
+import SimpleText from './storyblok/components/SimpleText'
 import Teaser from './storyblok/components/Teaser'
 import Timeline from './storyblok/components/Timeline'
 import SkillWrapper from './storyblok/components/SkillWrapper'
@@ -18,6 +20,7 @@ import Grid from './storyblok/components/Grid'
 import ContactForm from './storyblok/components/ContactForm'
 import ContactItem from './storyblok/components/ContactItem'
 import ContentWrapper from './storyblok/components/ContentWrapper'
+import ImageBlock from './storyblok/components/ImageBlock'
 import Spacer from './storyblok/components/Spacer'
 
 // Import Mixins
@@ -25,6 +28,7 @@ import helpers from '../mixins/helpers'
 
 // import external librabies
 import dayjs from 'dayjs'
+
 
 export default function (Vue, { router, head, isClient }) {
 
@@ -41,6 +45,7 @@ export default function (Vue, { router, head, isClient }) {
 
   // Set Storyblok Components
   Vue.component('Page', Page)
+  Vue.component('Blog', Blog)
   Vue.component('Plaincontent', Plaincontent)
   Vue.component('Teaser', Teaser)
   Vue.component('Timeline', Timeline)
@@ -51,6 +56,8 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('ContactItem',ContactItem )
   Vue.component('Spacer',Spacer )
   Vue.component('ContentWrapper',ContentWrapper )
+  Vue.component('SimpleText',SimpleText )
+  Vue.component('ImageBlock',ImageBlock )
 
 
   // Set global mixins
