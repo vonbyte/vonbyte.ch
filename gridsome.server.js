@@ -20,6 +20,21 @@ module.exports = function (api) {
       }
     }`)
 
+    // Create static pages
+    const locales = ['de','en']
+    locales.forEach((locale) => {
+      createPage({
+        path: `/${locale}/blog`,
+        component: './src/templates/Storyblok.vue',
+        context: {
+          locale,
+          componentName: 'BlogOverview',
+          showHome: true
+        }
+      })
+    })
+
+
     // Create a Page for each content
     data.allStoryblokEntry.edges.forEach(({ node }) => {
 
@@ -28,18 +43,21 @@ module.exports = function (api) {
 
       let component = './src/templates/Storyblok.vue'
       let showHome = true
+      let componentName = null
 
       if (node.full_slug.indexOf('/home') !== -1) {
         path = `/${locale}/`
         component = './src/templates/Landing.vue'
         showHome = false
       }
+
       createPage({
         path,
         component,
         context: {
           id: node.id,
           locale,
+          componentName,
           showHome
         }
       })

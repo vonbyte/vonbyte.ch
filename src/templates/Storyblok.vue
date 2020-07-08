@@ -1,11 +1,12 @@
 <template>
-    <Layout :isLanding="story.content.component === 'landingpage'">
+    <Layout :isLanding="story && story.content.component === 'landingpage'">
         <component
-                v-if="story.content.component"
+                v-if="story && story.content.component"
                 :key="story.content._uid"
                 :blok="story.content"
                 :is="story.content.component"
         />
+        <component v-else :is="$context.componentName"></component>
     </Layout>
 </template>
 
@@ -17,8 +18,11 @@ export default {
       return this.$page.storyblokEntry
     },
     seo () {
-      return this.story.content.seo
+      return  this.story ? this.story.content.seo : null;
     }
+  },
+  mounted () {
+    console.log()
   },
   metaInfo() {
     return {

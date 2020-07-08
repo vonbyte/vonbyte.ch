@@ -16,9 +16,10 @@ export default {
   ],
   computed: {
     menulinks () {
+      console.log(this.$static.settings)
       const settings = this.$static.settings.edges.find((edge) => {
-        console.log(edge)
-        return edge.node.full_slug.indexOf(this.$context.locale + '/global') !== -1
+
+        return edge.node.full_slug.indexOf(this.$context.locale + '/settings') !== -1
       })
       return settings.node.content.HeaderLinks
     }
@@ -32,7 +33,7 @@ export default {
 
 <static-query>
     query {
-        settings: allStoryblokEntry(filter: {name: {eq: "global"}}) {
+        settings: allStoryblokEntry(filter: {name: {eq: "settings"}}) {
             edges {
                 node {
                     id

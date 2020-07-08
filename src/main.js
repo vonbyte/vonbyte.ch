@@ -22,23 +22,24 @@ import ContactItem from './storyblok/components/ContactItem'
 import ContentWrapper from './storyblok/components/ContentWrapper'
 import ImageBlock from './storyblok/components/ImageBlock'
 import Spacer from './storyblok/components/Spacer'
+import BlogOverview from './components/BlogOverview'
 
 // Import Mixins
 import helpers from '../mixins/helpers'
 
 // import external librabies
 import dayjs from 'dayjs'
+import axios from 'axios'
 
 
 export default function (Vue, { router, head, isClient }) {
-
-  window.axios = require('axios')
 
   require('dayjs/locale/de')
   require('dayjs/locale/en')
 
   // Set external libraies
   Vue.prototype.$dayjs = dayjs
+  Vue.prototype.axios = axios
 
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
@@ -58,6 +59,7 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('ContentWrapper',ContentWrapper )
   Vue.component('SimpleText',SimpleText )
   Vue.component('ImageBlock',ImageBlock )
+  Vue.component('BlogOverview',BlogOverview )
 
 
   // Set global mixins
